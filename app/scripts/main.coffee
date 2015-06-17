@@ -4,6 +4,7 @@ $ ->
     typeSpeed: 0
     loop: true
     backDelay: 2000
+    cursorChar: '&#x258c;'
 
   $('a').click (e) ->
     el = $ e.currentTarget
