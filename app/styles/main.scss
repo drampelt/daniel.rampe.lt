@@ -1,3 +1,5 @@
+// @import "compass/reset";
+@import "compass/css3";
 @import 'vendor';
 @import 'colors';
 
@@ -15,11 +17,11 @@ section {
   h1 {
     font-size: 4em;
     margin: 0.1em 0;
-    color: #4DBCE9;
+    color: $blue;
   }
   h2 {
     margin: 0.1em 0;
-    color: #4DBCE9;
+    color: $blue;
   }
   p {
     letter-spacing: 0.1px;
@@ -29,35 +31,67 @@ section {
 
 #work {
   background: $work-bg;
-  color: $almost-black;
-  // color: white;
+  // color: $almost-black;
+  color: white;
 }
 
 #projects {
   background: $projects-bg;
+  color: white;
 }
 
 #contact {
   background: $contact-bg;
+  color: white;
 }
 
 .project-list {
   .project {
-    margin: 2px;
-    min-height: 300px;
-    background: url(http://placehold.it/300);
+    margin: 20px;
+    width: auto;
+    height: 300px;
+    background-color: white;
+    background-size: cover;
+    bacgkround-position-y: 0;
+    bacgkround-position-x: 0;
+    @include transition-property(background-position-y, background-position-x);
+    @include transition-duration(0.75s);
     position: relative;
-    &:hover .project-inner { opacity: 1; }
+    &:hover {
+      .project-inner { opacity: 1; }
+      &#door2door { background-position-y: 70%; }
+      &#clipshit { background-position-y: 120%; }
+      &#osugdx { background-position-x: 90%; }
+    }
+    &#door2door { background-image: url(/images/door2door.png); }
+    &#clipshit { background-image: url(/images/clipshit.png); }
+    &#osugdx { background-image: url(/images/osugdx.png); }
+    &#bukkit { background-image: url(/images/bukkit.png); }
+    &#chalkdotcom { background-image: url(/images/chalkdotcom.png); }
   }
   .project-inner {
     opacity: 0;
-    background: rgba(0,0,0,0.5);
+    @include background-image(linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6) 65%, rgba(0,0,0,0.9)));
     color: white;
+    padding: 15px;
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+    @include transition-property(opacity);
+    @include transition-duration(0.75s);
+    h1 {
+      margin: 0;
+    }
+    p {
+      position: absolute;
+      bottom: 0;
+    }
+    a {
+      color: $blue;
+      &:hover { border-bottom-color: $blue; }
+    }
   }
 }
 

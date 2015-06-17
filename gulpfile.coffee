@@ -8,11 +8,11 @@ wiredep = require('wiredep').stream
 bower = require 'gulp-bower'
 imagemin = require 'gulp-imagemin'
 usemin = require 'gulp-usemin'
-spritesmith = require 'gulp.spritesmith'
 runSequence = require 'run-sequence'
 sass = require 'gulp-ruby-sass'
+compass = require 'gulp-compass'
 
-gulp.task 'browserSync', ['coffee', 'js', 'html', 'sass', 'css', 'sprite', 'bower'], ->
+gulp.task 'browserSync', ['coffee', 'js', 'html', 'sass', 'css', 'images', 'bower'], ->
   browserSync.init server: './.tmp', open: false
 
   gulp.watch 'app/*.html', ['html']
@@ -50,23 +50,19 @@ gulp.task 'css', ->
     .pipe reload stream: true
 
 gulp.task 'sass', ->
-  sass 'app/styles/main.scss'
-    .on 'error', gutil.log
+  gulp.src 'app/styles/*.scss'
+    .pipe compass(
+      config_file: './config.rb'
+      css: '.tmp/styles'
+      sass: 'app/styles'
+    ).on 'error', gutil.log
     .pipe gulp.dest '.tmp/styles/'
     .pipe reload stream: true
 
-gulp.task 'sprite', ->
-  spriteData = gulp.src 'app/images/*.png'
-    .pipe spritesmith
-      imgName: 'sprite.png'
-      cssName: 'sprite.css'
-      cssTemplate: 'sprite.css.handlebars'
-
-  spriteData.img
+gulp.task 'images', ->
+  gulp.src 'app/images/*'
     .pipe gulp.dest '.tmp/images/'
-
-  spriteData.css
-    .pipe gulp.dest '.tmp/styles/'
+    .pipe reload stream: true
 
 gulp.task 'serve', ->
   runSequence 'clean', 'browserSync'
