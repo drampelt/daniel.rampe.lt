@@ -9,7 +9,6 @@ bower = require 'gulp-bower'
 imagemin = require 'gulp-imagemin'
 usemin = require 'gulp-usemin'
 runSequence = require 'run-sequence'
-sass = require 'gulp-ruby-sass'
 compass = require 'gulp-compass'
 
 gulp.task 'browserSync', ['coffee', 'js', 'html', 'sass', 'css', 'images', 'bower'], ->

@@ -1,4 +1,4 @@
-.bowerrc
 .sass-cache
 .tmp
+app/lib
 node_modules
