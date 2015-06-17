@@ -1,0 +1,32 @@
+{
+  "name": "daniel.rampe.lt",
+  "version": "1.0.0",
+  "authors": [
+    "Daniel Rampelt <drampelt@gmail.com>"
+  ],
+  "description": "Daniel Rampelt's personal website",
+  "license": "MIT",
+  "homepage": "https://daniel.rampe.lt",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "pure": "~0.6.0",
+    "typed.js": "*"
+  },
+  "overrides": {
+    "pure": {
+      "main": [
+        "base.css",
+        "grids-core.css",
+        "grids.css",
+        "grids-responsive.css"
+      ]
+    }
+  }
+}

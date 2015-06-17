@@ -1,0 +1,72 @@
+@import 'vendor';
+@import 'colors';
+
+section {
+  padding: 10vh 20px;
+  // max-height: 80vh;
+  min-height: 60vh;
+  display: block;
+  overflow: hidden;
+}
+
+#intro {
+  background: $intro-bg;
+  color: $almost-black;
+  h1 {
+    font-size: 4em;
+    margin: 0.1em 0;
+    color: #4DBCE9;
+  }
+  h2 {
+    margin: 0.1em 0;
+    color: #4DBCE9;
+  }
+  p {
+    letter-spacing: 0.1px;
+    font-weight: 100;
+  }
+}
+
+#work {
+  background: $work-bg;
+  color: $almost-black;
+  // color: white;
+}
+
+#projects {
+  background: $projects-bg;
+}
+
+#contact {
+  background: $contact-bg;
+}
+
+.project-list {
+  .project {
+    margin: 2px;
+    min-height: 300px;
+    background: url(http://placehold.it/300);
+    position: relative;
+    &:hover .project-inner { opacity: 1; }
+  }
+  .project-inner {
+    opacity: 0;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+a {
+  color: $almost-black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  border-bottom: 2px solid $almost-black;
+}
