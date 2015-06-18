@@ -10,6 +10,13 @@ imagemin = require 'gulp-imagemin'
 usemin = require 'gulp-usemin'
 runSequence = require 'run-sequence'
 compass = require 'gulp-compass'
+minifyHtml = require 'gulp-minify-html'
+minifyCss = require 'gulp-minify-css'
+uglify = require 'gulp-uglify'
+sftp = require 'gulp-sftp'
+RevAll = require 'gulp-rev-all'
+
+# Server
 
 gulp.task 'browserSync', ['coffee', 'js', 'html', 'sass', 'css', 'images', 'bower'], ->
   browserSync.init server: './.tmp', open: false
@@ -19,7 +26,7 @@ gulp.task 'browserSync', ['coffee', 'js', 'html', 'sass', 'css', 'images', 'bowe
   gulp.watch 'app/styles/*.scss', ['sass']
 
 gulp.task 'clean', ->
-  gulp.src '.tmp', read: false
+  gulp.src '{.tmp,dist,cdn}', read: false
     .pipe clean()
 
 gulp.task 'js', ->
@@ -65,5 +72,31 @@ gulp.task 'images', ->
 
 gulp.task 'serve', ->
   runSequence 'clean', 'browserSync'
+
+# Building
+
+gulp.task 'usemin', ['coffee', 'js', 'html', 'sass', 'css', 'bower', 'distimages'], ->
+  gulp.src '.tmp/*.html'
+    .pipe usemin
+      css: [minifyCss(), 'concat']
+      html: [minifyHtml empty: true]
+      js: [uglify(), 'concat']
+    .pipe gulp.dest 'dist/'
+
+gulp.task 'distimages', ->
+  gulp.src 'app/images/*.png'
+    .pipe imagemin()
+    .pipe gulp.dest 'dist/images/'
+
+gulp.task 'rev', ->
+  revAll = new RevAll dontRenameFile: [/^\/favicon.ico$/g, '.html']
+  gulp.src 'dist/**/*'
+    .pipe revAll.revision()
+    .pipe sftp require './ssh.json'
+
+gulp.task 'build', ->
+  runSequence 'clean', 'usemin', 'rev'
+
+
 
 gulp.task 'default', ['serve']

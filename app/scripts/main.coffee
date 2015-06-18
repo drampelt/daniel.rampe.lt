@@ -1,3 +1,6 @@
+@n = "daniel"
+@d = "rampe.lt"
+
 $ ->
   $('#typed').typed
     strings: ["a student", "an 18 year old guy", "a technology fan", "a gamer", "a windsurfer"]

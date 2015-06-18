@@ -5,8 +5,6 @@
 
 section {
   padding: 10vh 20px;
-  // max-height: 80vh;
-  min-height: 60vh;
   display: block;
   overflow: hidden;
 }
@@ -43,29 +41,40 @@ section {
 #contact {
   background: $contact-bg;
   color: white;
+  a {
+    color: $green;
+    &:hover { border-color: $green; }
+  }
+  #email {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+  }
 }
 
 .project-list {
+  margin: 0 -20px;
   .project {
     margin: 20px;
     width: auto;
     height: 300px;
     background-color: white;
     background-size: cover;
-    bacgkround-position-y: 0;
-    bacgkround-position-x: 0;
-    @include transition-property(background-position-y, background-position-x);
+    background-position: 50% 0;
+    @include transition-property(background-position);
     @include transition-duration(0.75s);
     position: relative;
     &:hover {
       .project-inner { opacity: 1; }
-      &#door2door { background-position-y: 70%; }
-      &#clipshit { background-position-y: 120%; }
-      &#osugdx { background-position-x: 90%; }
+      &#door2door { background-position: 50% 70%; }
+      &#clipshit { background-position: 50% 120%; }
+      &#osugdx { background-position: 90% 50%; }
     }
     &#door2door { background-image: url(/images/door2door.png); }
     &#clipshit { background-image: url(/images/clipshit.png); }
-    &#osugdx { background-image: url(/images/osugdx.png); }
+    &#osugdx {
+      background-image: url(/images/osugdx.png);
+      background-position: 20% 50%;
+    }
     &#bukkit { background-image: url(/images/bukkit.png); }
     &#chalkdotcom { background-image: url(/images/chalkdotcom.png); }
   }
@@ -87,6 +96,9 @@ section {
     p {
       position: absolute;
       bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0 15px;
     }
     a {
       color: $blue;
