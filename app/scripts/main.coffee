@@ -3,7 +3,7 @@
 
 $ ->
   $('#typed').typed
-    strings: ["a student", "an 18 year old guy", "a technology fan", "a gamer", "a windsurfer"]
+    strings: ["a student", "a 19 year old guy", "a technology fan", "a gamer", "a windsurfer"]
     typeSpeed: 0
     loop: true
     backDelay: 2000

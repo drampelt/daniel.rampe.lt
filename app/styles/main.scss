@@ -60,6 +60,7 @@ section {
     background-color: white;
     background-size: cover;
     background-position: 50% 0;
+    background-repeat: no-repeat;
     @include transition-property(background-position);
     @include transition-duration(0.75s);
     position: relative;
@@ -79,6 +80,12 @@ section {
     }
     &#bukkit { background-image: url(/images/bukkit.png); }
     &#chalkdotcom { background-image: url(/images/chalkdotcom.png); }
+    &#wemesh {
+      background-image: url(/images/wemesh.png);
+      background-color: red;
+      background-size: 80%;
+      background-position-y: 50%;
+    }
   }
   .project-inner {
     opacity: 0;
