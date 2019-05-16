@@ -2,9 +2,9 @@
 @d = "rampe.lt"
 
 $ ->
-  $('#typed').typed
-    strings: ["a student", "a 19 year old guy", "a technology fan", "a gamer", "a windsurfer"]
-    typeSpeed: 0
+  new Typed '#typed',
+    strings: ["a mobile developer", "a 22 year old guy", "a gamer", "a windsurfer"]
+    typeSpeed: 40
     loop: true
     backDelay: 2000
     cursorChar: '&#x258c;'
