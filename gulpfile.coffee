@@ -76,11 +76,13 @@ gulp.task 'serve', ->
 # Building
 
 gulp.task 'usemin', ['coffee', 'js', 'html', 'sass', 'css', 'bower', 'distimages'], ->
+  revAll = new RevAll dontRenameFile: [/^\/favicon.ico$/g, '.html']
   gulp.src '.tmp/*.html'
     .pipe usemin
       css: [minifyCss(), 'concat']
       html: [minifyHtml empty: true]
       js: [uglify(), 'concat']
+    .pipe revAll.revision()
     .pipe gulp.dest 'dist/'
 
 gulp.task 'distimages', ->
@@ -88,14 +90,14 @@ gulp.task 'distimages', ->
     .pipe imagemin()
     .pipe gulp.dest 'dist/images/'
 
-gulp.task 'rev', ->
-  revAll = new RevAll dontRenameFile: [/^\/favicon.ico$/g, '.html']
-  gulp.src 'dist/**/*'
-    .pipe revAll.revision()
-    .pipe sftp require './ssh.json'
+# gulp.task 'rev', ->
+#   revAll = new RevAll dontRenameFile: [/^\/favicon.ico$/g, '.html']
+#   gulp.src 'dist/**/*'
+#     .pipe revAll.revision()
+#     .pipe sftp require './ssh.json'
 
 gulp.task 'build', ->
-  runSequence 'clean', 'usemin', 'rev'
+  runSequence 'clean', 'usemin'
 
 
 
